@@ -1,0 +1,6 @@
+@SimplyBooksAPI_HostAddress = http://localhost:5189
+
+GET {{SimplyBooksAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,4 +1,7 @@
-
+// using SimplyBooksAPI.API;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http.Json;
 namespace SimplyBooksAPI
 {
     public class Program
@@ -14,6 +17,17 @@ namespace SimplyBooksAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // allows passing datetimes without time zone data 
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+            // allows our api endpoints to access the database through Entity Framework Core
+            builder.Services.AddNpgsql<SimplyBooksAPIDbContext>(builder.Configuration["SimplyBooksAPIDbConnectionString"]);
+
+            // Set the JSON serializer options
+            builder.Services.Configure<JsonOptions>(options =>
+            {
+                options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,25 +41,6 @@ namespace SimplyBooksAPI
 
             app.UseAuthorization();
 
-            var summaries = new[]
-            {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
-
-            app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    {
-                        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast")
-            .WithOpenApi();
 
             app.Run();
         }

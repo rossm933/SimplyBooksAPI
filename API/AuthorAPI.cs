@@ -12,6 +12,21 @@ namespace SimplyBooksAPI.API
 
             });
 
+            app.MapGet("/authors/{id}", (SimplyBooksAPIDbContext db, int id) =>
+            {
+                var author = db.Authors
+                                .Include(a => a.Books)
+                                .FirstOrDefault(a => a.Id == id);
+
+                if (author == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(author);
+
+            });
+
         }
     }
 }

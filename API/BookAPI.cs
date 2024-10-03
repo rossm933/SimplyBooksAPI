@@ -50,6 +50,35 @@ namespace SimplyBooksAPI.API
 
                 return Results.Created($"/book/{newBook.Id}", newBook);
             });
+
+            // Update Book
+            app.MapPut("/book/{id}", (SimplyBooksAPIDbContext db, int id, UpdateBookDTO bookDTO) =>
+            {
+                var bookToUpdate = db.Books.Include(b => b.Author).FirstOrDefault(b => b.Id == id);
+                if (bookToUpdate == null)
+                {
+                    return Results.NotFound("Book not found");
+                }
+
+                // Manually map properties from bookDTO to bookToUpdate
+                bookToUpdate.Title = bookDTO.Title; // assuming Book has a Title property
+                bookToUpdate.AuthorId = bookDTO.AuthorId; // assuming Book has an AuthorId property
+                bookToUpdate.Image = bookDTO.Image; // assuming Book has an Image property
+                bookToUpdate.Price = bookDTO.Price; // assuming Book has a Price property
+                bookToUpdate.Sale = bookDTO.Sale; // assuming Book has a Sale property
+                bookToUpdate.Description = bookDTO.Description; // assuming Book has a Description property
+
+                try
+                {
+                    db.SaveChanges();
+                    return Results.Ok(bookToUpdate);
+                }
+                catch (DbUpdateException)
+                {
+                    return Results.BadRequest("Error occurred updating book");
+                }
+            });
+
         }
     }
 }

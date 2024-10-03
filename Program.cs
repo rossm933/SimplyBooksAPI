@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
+using SimplyBooksAPI.API;
 namespace SimplyBooksAPI
 {
     public class Program
@@ -41,7 +42,8 @@ namespace SimplyBooksAPI
 
             app.UseAuthorization();
 
-
+            BookAPI.Map(app);
+            AuthorAPI.Map(app);
             app.Run();
         }
     }

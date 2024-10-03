@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 namespace SimplyBooksAPI.API
 {
-    public class BookAPI
+    public class AuthorAPI
     {
         public static void Map(WebApplication app)
         {
-            app.MapGet("/books", (SimplyBooksAPIDbContext db) =>
+            app.MapGet("/authors", (SimplyBooksAPIDbContext db) =>
             {
-                return db.Books.Include(p => p.Author).ToList();
+                return db.Authors.Include(p => p.Books).ToList();
 
             });
 

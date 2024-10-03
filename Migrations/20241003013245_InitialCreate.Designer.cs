@@ -11,7 +11,7 @@ using SimplyBooksAPI;
 namespace SimplyBooksAPI.Migrations
 {
     [DbContext(typeof(SimplyBooksAPIDbContext))]
-    [Migration("20241003003326_InitialCreate")]
+    [Migration("20241003013245_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

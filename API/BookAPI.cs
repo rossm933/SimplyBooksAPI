@@ -1,5 +1,7 @@
 ﻿using SimplyBooksAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using SimplyBooksAPI.DTOs;
 namespace SimplyBooksAPI.API
 {
     public class BookAPI
@@ -13,6 +15,7 @@ namespace SimplyBooksAPI.API
 
             });
             
+            // Get books by id
             app.MapGet("/books/{id}", (SimplyBooksAPIDbContext db, int id) =>
             {
                 var book = db.Books
@@ -26,6 +29,26 @@ namespace SimplyBooksAPI.API
 
                 return Results.Ok(book);
 
+            });
+
+            // Create book
+            app.MapPost("/book", (SimplyBooksAPIDbContext db, CreateBookDTO bookDTO) =>
+            {
+                var newBook = new Book
+                {
+                    Title = bookDTO.Title,
+                    Description = bookDTO.Description,
+                    Image = bookDTO.Image,
+                    Price = bookDTO.Price,
+                    Sale = bookDTO.Sale,
+                    Uid = bookDTO.Uid,
+                    AuthorId = bookDTO.AuthorId
+                };
+
+                db.Books.Add(newBook);
+                db.SaveChanges();
+
+                return Results.Created($"/book/{newBook.Id}", newBook);
             });
         }
     }

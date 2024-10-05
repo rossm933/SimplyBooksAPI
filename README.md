@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-    <b>Simple description of what your project do or how to use it.</b>
+    <b>The SimplyBooks Rest API demonstrates the API Builder capabilities in Postman using an imaginary e-commerce platform. It provides endpoints for retrieving books or authors and their details from a database as well as adding and editing authors or books in a database. There is also an endpoint to remove an author or book from the database.</b>
 </p>
 
 <h2 id="technologies">💻 Technologies</h2>
@@ -18,6 +18,7 @@
 - C#
 - .NET
 - SQL
+- -PostMan
 
 <h2 id="started">🚀 Getting started</h2>
 

@@ -18,7 +18,7 @@
 - C#
 - .NET
 - SQL
-- PostMan
+- Postman
 
 <h2 id="started">🚀 Getting started</h2>
 

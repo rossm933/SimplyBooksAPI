@@ -7,6 +7,5 @@
         public string? LastName { get; set; }
         public string? Image { get; set; }
         public bool Favorite { get; set; }
-        public string? Uid { get; set; }
     }
 }

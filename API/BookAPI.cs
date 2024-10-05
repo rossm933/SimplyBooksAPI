@@ -32,7 +32,7 @@ namespace SimplyBooksAPI.API
             });
 
             // Create book
-            app.MapPost("/book", (SimplyBooksAPIDbContext db, CreateBookDTO bookDTO) =>
+            app.MapPost("/books", (SimplyBooksAPIDbContext db, CreateBookDTO bookDTO) =>
             {
                 var newBook = new Book
                 {
@@ -41,7 +41,6 @@ namespace SimplyBooksAPI.API
                     Image = bookDTO.Image,
                     Price = bookDTO.Price,
                     Sale = bookDTO.Sale,
-                    Uid = bookDTO.Uid,
                     AuthorId = bookDTO.AuthorId
                 };
 
@@ -52,7 +51,7 @@ namespace SimplyBooksAPI.API
             });
 
             // Update Book
-            app.MapPut("/book/{id}", (SimplyBooksAPIDbContext db, int id, UpdateBookDTO bookDTO) =>
+            app.MapPut("/books/{id}", (SimplyBooksAPIDbContext db, int id, UpdateBookDTO bookDTO) =>
             {
                 var bookToUpdate = db.Books.Include(b => b.Author).FirstOrDefault(b => b.Id == id);
                 if (bookToUpdate == null)
@@ -60,13 +59,13 @@ namespace SimplyBooksAPI.API
                     return Results.NotFound("Book not found");
                 }
 
-                // Manually map properties from bookDTO to bookToUpdate
-                bookToUpdate.Title = bookDTO.Title; // assuming Book has a Title property
-                bookToUpdate.AuthorId = bookDTO.AuthorId; // assuming Book has an AuthorId property
-                bookToUpdate.Image = bookDTO.Image; // assuming Book has an Image property
-                bookToUpdate.Price = bookDTO.Price; // assuming Book has a Price property
-                bookToUpdate.Sale = bookDTO.Sale; // assuming Book has a Sale property
-                bookToUpdate.Description = bookDTO.Description; // assuming Book has a Description property
+                
+                bookToUpdate.Title = bookDTO.Title;
+                bookToUpdate.AuthorId = bookDTO.AuthorId;
+                bookToUpdate.Image = bookDTO.Image;
+                bookToUpdate.Price = bookDTO.Price;
+                bookToUpdate.Sale = bookDTO.Sale;
+                bookToUpdate.Description = bookDTO.Description;
 
                 try
                 {
@@ -77,6 +76,23 @@ namespace SimplyBooksAPI.API
                 {
                     return Results.BadRequest("Error occurred updating book");
                 }
+            });
+
+            // Delete Book
+            app.MapDelete("/books/{id}", (SimplyBooksAPIDbContext db, int id) =>
+            {
+
+                var book = db.Books.FirstOrDefault(b => b.Id == id);
+
+                if (book == null)
+                {
+                    return Results.NotFound("book is null");
+                }
+
+                db.Books.Remove(book);
+                db.SaveChanges();
+                return Results.Ok("book deleted");
+
             });
 
         }

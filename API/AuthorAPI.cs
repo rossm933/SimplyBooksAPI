@@ -38,7 +38,6 @@ namespace SimplyBooksAPI.API
                     LastName = newAuthorDTO.LastName,
                     Image = newAuthorDTO.Image,
                     Favorite = newAuthorDTO.Favorite,
-                    Uid = newAuthorDTO.Uid,
                  
                     Books = new List<Book>() 
                 };
@@ -82,6 +81,22 @@ namespace SimplyBooksAPI.API
                 }
             });
 
+            // Delete Author
+            app.MapDelete("/authors/{id}", (SimplyBooksAPIDbContext db, int id) =>
+            {
+
+                var author = db.Authors.FirstOrDefault(a => a.Id == id);
+
+                if (author == null)
+                {
+                    return Results.NotFound("author is null");
+                }
+
+                db.Authors.Remove(author);
+                db.SaveChanges();
+                return Results.Ok("author deleted");
+
+            });
 
         }
     }

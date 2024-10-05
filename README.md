@@ -24,6 +24,13 @@
 
 When in Visual Studio, press the play button in the tool bar at the top. Make sure it says https not http. 
 
+<h3>Prerequisites</h3>
+
+Here you list all prerequisites necessary for running your project. For example:
+
+- [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [.NET](https://dotnet.microsoft.com/en-us/)
+  
 <h3>Cloning</h3>
 
 How to clone your project

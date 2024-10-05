@@ -71,7 +71,7 @@ Here you can list the main routes of your API, and what are their expected reque
 <table>
   <tr>
     <td align="center">
-      <a href="#">
+      <a href="https://github.com/rossm933">
         <sub>
           <b>Ross Morgan</b>
         </sub>

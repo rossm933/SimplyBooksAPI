@@ -1,1 +1,80 @@
-# SimplyBooksAPI
+<h1 align="center" style="font-weight: bold;">SimplyBooksAPI</h1>
+
+<p align="center">
+ <a href="#tech">Technologies</a> • 
+ <a href="#started">Getting Started</a> • 
+  <a href="#routes">API Endpoints</a> •
+ <a href="#colab">Collaborators</a> •
+ <a href="#contribute">Contribute</a>
+</p>
+
+<p align="center">
+    <b>Simple description of what your project do or how to use it.</b>
+</p>
+
+<h2 id="technologies">💻 Technologies</h2>
+
+- list of all technologies you used
+- C#
+- .NET
+- SQL
+
+<h2 id="started">🚀 Getting started</h2>
+
+When in Visual Studio, press the play button in the tool bar at the top. Make sure it says https not http. 
+
+<h3>Cloning</h3>
+
+How to clone your project
+
+```bash
+git clone your-project-url-in-github
+```
+
+<h3>Starting</h3>
+
+How to start your project
+
+```bash
+cd project-name
+npm some-command-to-run
+```
+
+<h2 id="routes">📍 API Endpoints</h2>
+
+Here you can list the main routes of your API, and what are their expected request bodies.
+​
+| route               | description                                          
+|----------------------|-----------------------------------------------------
+| <kbd>GET /books</kbd>     | retrieves all books info
+| <kbd>GET /books/{id}</kbd>     | retrieves a single book info
+| <kbd>POST /books</kbd>     | creates new books
+| <kbd>PUT /books/{id}</kbd>     | update book info
+| <kbd>DELETE /books/{id}</kbd>     | delete book info
+| <kbd>GET /authorss</kbd>     | retrieves all authors info
+| <kbd>GET /authors/{id}</kbd>     | retrieves a single author info
+| <kbd>POST /authors</kbd>     | creates new authors
+| <kbd>PATCH /authors/{id}</kbd>     | update author info
+| <kbd>DELETE /authors/{id}</kbd>     | delete author info
+
+
+<h2 id="colab">🤝 Collaborators</h2>
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <sub>
+          <b>Ross Morgan</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+<h3>Documentations that might help</h3>
+
+[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+
+[API Documentation](https://documenter.getpostman.com/view/31740100/2sAXxMfteN)

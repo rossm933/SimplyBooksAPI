@@ -22,7 +22,7 @@
 
 <h2 id="started">🚀 Getting started</h2>
 
-When in Visual Studio, press the play button in the tool bar at the top. Make sure it says https not http. 
+1.) Clone a repository option in Visual Studio 2.) Enter or type the repository location, and then select the Clone button 3.) To start building the program, press the green Start button on the Visual Studio toolbar, or press F5 or Ctrl+F5. Using the Start button or F5 runs the program under the debugger.
 
 <h3>Prerequisites</h3>
 
